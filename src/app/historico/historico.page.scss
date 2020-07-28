@@ -33,13 +33,31 @@ ion-button  {
   --background: #DDDDDD;
   --color: #A0A0A0;
   --border-radius: 50px;
+  --background-activated: #FFBB00;
+  --background-focused: #FFBB00;
+  --background-hover: #FFBB00;
+  --color-activated: #FFF;
+  --color-focused: #FFF;
+  --color-hover: #FFF;
+}
+
+.active {
+  --background: #FFBB00 !important;
+  --color: #FFF !important;
 }
 
 .item-historico {
   height: 60px;
   background: #DDDDDD;
   border-radius: 10px;
+}
+
+.mt-10 {
   margin-top: 10px;
+}
+
+.ion-flex-space-around {
+  justify-content: space-around !important;
 }
 
 // TODO: APLICAR A COR QUANDO CLICA E QUANDO ESTÁ SELECIONADO

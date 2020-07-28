@@ -7,10 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoricoPage implements OnInit {
 
-  // tslint:disable-next-line: ban-types
-  public periodoHoje: Boolean = true;
-  // tslint:disable-next-line: ban-types
-  public periodoTodos: Boolean = false;
+  public periodoHoje = true;
+  public periodoTodos = false;
 
   public listaHistorico: Array<any> = [
     {
@@ -45,19 +43,22 @@ export class HistoricoPage implements OnInit {
   ngOnInit() {
   }
 
-  changeList() {
-    if (this.periodoHoje) {
-      this.periodoHoje = false;
-      this.periodoTodos = true;
+  changeList(periodo: string) {
+    if (periodo === 'hoje') {
+      if (!this.periodoHoje) {
+        this.periodoHoje = true;
+        this.periodoTodos = false;
+      }
     } else {
-      this.periodoHoje = true;
-      this.periodoTodos = false;
+      if (!this.periodoTodos) {
+        this.periodoHoje = false;
+        this.periodoTodos = true;
+      }
     }
   }
 
   clickItem(item) {
     console.log(item);
-    
   }
 
 }

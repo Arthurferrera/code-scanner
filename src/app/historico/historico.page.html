@@ -17,46 +17,34 @@
 
     <ion-col size="12">
       <ion-row>
-        <ion-col size="10" offset="1" class="ion-flex-content">
-          <ion-button [ngClass]="{'active': periodoHoje}" (click)="changeList()">
+        <ion-col size="10" offset="1" class="ion-flex-content ion-flex-space-around">
+          <ion-button [ngClass]="{'active': periodoHoje}" (click)="changeList('hoje')">
             Hoje
           </ion-button>
-          <ion-button [ngClass]="{'active': periodoTodos}" (click)="changeList()">
+          <ion-button [ngClass]="{'active': periodoTodos}" (click)="changeList('todos')">
             Todos
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-col>
 
-    <ion-col size="12" style="padding: 15px;">
-      <ion-row *ngFor="let item of listaHistorico" (click)="clickItem(item)" class="item-historico ion-flex-content">
+    <ion-col size="12" style="padding: 0 15px;" *ngIf="periodoHoje">
+      <ion-row *ngFor="let item of listaHistorico; let index = index" [ngClass]="{'mt-10': index > 0}" (click)="clickItem(item)" class="item-historico ion-flex-content">
         <ion-col size="2">
           <img src="assets/doc.svg" alt="Documento">
         </ion-col>
-        <ion-col size="8">{{item.titulo}}</ion-col>
-        <ion-col size="2">{{item.descricao}}</ion-col>
+        <ion-col size="8">
+          <span>{{item.titulo}}</span>
+          <br>
+          <span>{{item.descricao}}</span>
+        </ion-col>
+        <ion-col size="2">
+          <img src="assets/eye.svg" alt="Documento">
+        </ion-col>
       </ion-row>
-      <!-- <ion-row class="item-historico ion-flex-content">
-        <ion-col size="2">
-          <img src="assets/doc.svg" alt="Documento">
-        </ion-col>
-        <ion-col size="8">2</ion-col>
-        <ion-col size="2">3</ion-col>
-      </ion-row>
-      <ion-row class="item-historico ion-flex-content">
-        <ion-col size="2">
-          <img src="assets/doc.svg" alt="Documento">
-        </ion-col>
-        <ion-col size="8">2</ion-col>
-        <ion-col size="2">3</ion-col>
-      </ion-row>
-      <ion-row class="item-historico ion-flex-content">
-        <ion-col size="2">
-          <img src="assets/doc.svg" alt="Documento">
-        </ion-col>
-        <ion-col size="8">2</ion-col>
-        <ion-col size="2">3</ion-col>
-      </ion-row> -->
+    </ion-col>
+    <ion-col size="12" *ngIf="periodoTodos">
+      Nenhum dado encontrado
     </ion-col>
   </ion-row>
 </ion-content>
