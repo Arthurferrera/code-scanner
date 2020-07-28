@@ -1,0 +1,21 @@
+ion-content {
+  --background: #FFBB00;
+}
+
+.box-banner-historico {
+  margin: 0 auto;
+  width: 80vw;
+
+  img {
+    position: absolute;
+  }
+}
+
+.row-rounded {
+  margin-top: 25vh;
+  height: 75vh;
+  background-color: #FFF;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 54px;
+  padding-top: 15vh;
+}
