@@ -14,7 +14,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'historico',
     pathMatch: 'full'
+  },  {
+    path: 'visualizar',
+    loadChildren: () => import('./visualizar/visualizar.module').then( m => m.VisualizarPageModule)
   }
+
 ];
 
 @NgModule({
