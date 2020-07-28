@@ -8,14 +8,33 @@ ion-content {
 
   img {
     position: absolute;
+    top: 1vh;
+    left: 6vw;
   }
 }
 
 .row-rounded {
-  margin-top: 25vh;
-  height: 75vh;
+  margin-top: 19vh;
+  height: 81vh;
   background-color: #FFF;
   border-top-left-radius: 40px;
   border-top-right-radius: 54px;
-  padding-top: 15vh;
+  padding-top: 20vh;
+  color: #6E6E6E;
+  
+  h3, h6 {
+    text-align: center;
+  }
+}
+
+ion-button  {
+  width: 90px;
+  --background: #DDDDDD;
+  --color: #A0A0A0;
+  --border-radius: 50px;
+}
+
+ion-button .active {
+  --background: #FFBB00;
+  --color: #FFF;
 }

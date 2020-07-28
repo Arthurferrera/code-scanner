@@ -12,4 +12,9 @@ export class HistoricoPage implements OnInit {
   ngOnInit() {
   }
 
+  changeList() {
+    console.log('clicou');
+    
+  }
+
 }
