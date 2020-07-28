@@ -28,13 +28,21 @@ ion-content {
 }
 
 ion-button  {
-  width: 90px;
+  height: 37px;
+  width: 119px;
   --background: #DDDDDD;
   --color: #A0A0A0;
   --border-radius: 50px;
 }
 
-ion-button .active {
-  --background: #FFBB00;
-  --color: #FFF;
+.item-historico {
+  height: 60px;
+  background: #DDDDDD;
+  border-radius: 10px;
 }
+
+// TODO: APLICAR A COR QUANDO CLICA E QUANDO ESTÁ SELECIONADO
+// ion-button:active {
+//   --background: #FFBB00;
+//   --color: #FFF;
+// }

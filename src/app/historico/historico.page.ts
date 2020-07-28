@@ -7,14 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoricoPage implements OnInit {
 
+  // tslint:disable-next-line: ban-types
+  public periodoHoje: Boolean = true;
+  // tslint:disable-next-line: ban-types
+  public periodoTodos: Boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   changeList() {
-    console.log('clicou');
-    
+    if (this.periodoHoje) {
+      this.periodoHoje = false;
+      this.periodoTodos = true;
+    } else {
+      this.periodoHoje = true;
+      this.periodoTodos = false;
+    }
   }
 
 }
