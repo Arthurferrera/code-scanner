@@ -2,6 +2,13 @@
 
   <ion-row class="row-rounded">
     <ion-col size="12">
+
+      <ion-row>
+        <ion-col size="2">
+          <ion-back-button defaultHref="historico"></ion-back-button>
+        </ion-col>
+
+      </ion-row>
       <h4>
         Nome do titulo QR
       </h4>
@@ -15,7 +22,7 @@
           <ion-button>
             <img src="/assets/share.svg" alt="Share">
           </ion-button>
-          <ion-button class="delete">
+          <ion-button class="delete" (click)="presentAlertConfirm()">
             <img src="/assets/trash.svg" alt="Delete">
           </ion-button>
         </ion-col>

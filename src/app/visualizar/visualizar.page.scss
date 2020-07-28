@@ -2,6 +2,7 @@ ion-content {
     --background: #FFBB00;
 }
 
+
   
 .row-rounded {
     margin-top: 10vh;
@@ -10,11 +11,16 @@ ion-content {
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     color: #6E6E6E;
+   
     
     h1, h2, h3,h4,h5, h6 {
       text-align: center;
     }
   }
+
+ion-back-button{
+    --color: #6E6E6E!important;
+}
 
 
 .image_qrcode{
