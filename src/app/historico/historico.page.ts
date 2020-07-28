@@ -12,7 +12,35 @@ export class HistoricoPage implements OnInit {
   // tslint:disable-next-line: ban-types
   public periodoTodos: Boolean = false;
 
-  constructor() { }
+  public listaHistorico: Array<any> = [
+    {
+      id: 1,
+      titulo: 'Site 1',
+      descricao: 'www.uol.com.br'
+    },
+    {
+      id: 2,
+      titulo: 'Site 2',
+      descricao: 'www.uol.com.br'
+    },
+    {
+      id: 3,
+      titulo: 'Site 3',
+      descricao: 'www.uol.com.br'
+    },
+    {
+      id: 4,
+      titulo: 'Site 4',
+      descricao: 'www.uol.com.br'
+    }
+  ];
+
+  constructor() {
+    this.listaHistorico.push();
+    this.listaHistorico.push();
+    this.listaHistorico.push();
+    this.listaHistorico.push();
+  }
 
   ngOnInit() {
   }
@@ -25,6 +53,11 @@ export class HistoricoPage implements OnInit {
       this.periodoHoje = true;
       this.periodoTodos = false;
     }
+  }
+
+  clickItem(item) {
+    console.log(item);
+    
   }
 
 }
