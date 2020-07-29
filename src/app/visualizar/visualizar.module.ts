@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { VisualizarPageRoutingModule } from './visualizar-routing.module';
 
 import { VisualizarPage } from './visualizar.page';
+import { ComponentesModule } from 'src/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentesModule,
     VisualizarPageRoutingModule
   ],
   declarations: [VisualizarPage]
 })
-export class VisualizarPageModule {}
+export class VisualizarPageModule { }
