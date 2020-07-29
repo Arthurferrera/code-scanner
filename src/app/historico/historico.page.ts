@@ -30,6 +30,16 @@ export class HistoricoPage implements OnInit {
       id: 4,
       titulo: 'Site 4',
       descricao: 'www.uol.com.br'
+    },
+    {
+      id: 5,
+      titulo: 'Site 3',
+      descricao: 'www.uol.com.br'
+    },
+    {
+      id: 6,
+      titulo: 'Site 4',
+      descricao: 'www.uol.com.br'
     }
   ];
 

@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { HistoricoPageRoutingModule } from './historico-routing.module';
 
 import { HistoricoPage } from './historico.page';
+import { ComponentesModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentesModule,
     HistoricoPageRoutingModule
   ],
   declarations: [HistoricoPage]
