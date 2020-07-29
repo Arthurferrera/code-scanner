@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VisualizarPageRoutingModule } from './visualizar-routing.module';
 
 import { VisualizarPage } from './visualizar.page';
-import { ComponentesModule } from 'src/components/components.module';
+import { ComponentesModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
