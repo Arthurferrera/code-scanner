@@ -43,14 +43,11 @@ export class HistoricoPage implements OnInit {
     }
   ];
 
-  constructor() {
-    this.listaHistorico.push();
-    this.listaHistorico.push();
-    this.listaHistorico.push();
-    this.listaHistorico.push();
-  }
+  constructor() {}
 
   ngOnInit() {
+    console.log(this.listaHistorico);
+    console.log(JSON.stringify(this.listaHistorico));
   }
 
   changeList(periodo: string) {

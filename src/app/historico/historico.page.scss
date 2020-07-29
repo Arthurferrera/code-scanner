@@ -15,7 +15,7 @@ ion-content {
 
 .row-rounded {
   margin-top: 19vh;
-  height: 81vh;
+  min-height: 81vh;
   background-color: #FFF;
   border-top-left-radius: 40px;
   border-top-right-radius: 54px;
@@ -30,6 +30,7 @@ ion-content {
 ion-button  {
   height: 37px;
   width: 119px;
+  
   --background: #DDDDDD;
   --color: #A0A0A0;
   --border-radius: 50px;
