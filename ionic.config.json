@@ -1,5 +1,7 @@
 {
   "name": "code-scanner",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
