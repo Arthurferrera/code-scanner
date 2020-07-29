@@ -5,49 +5,70 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './historico.page.html',
   styleUrls: ['./historico.page.scss'],
 })
+
+
 export class HistoricoPage implements OnInit {
 
   public periodoHoje = true;
   public periodoTodos = false;
-
+  public listaHoje: Array<any> = [];
   public listaHistorico: Array<any> = [
     {
+      id: 0,
+      title: 'Site 1',
+      text: 'www.uol.com.br',
+      date: '2020-07-29'
+    },
+    {
       id: 1,
-      titulo: 'Site 1',
-      descricao: 'www.uol.com.br'
+      title: 'Site 2',
+      text: 'www.uol.com.br',
+      date: '2020-07-28'
     },
     {
       id: 2,
-      titulo: 'Site 2',
-      descricao: 'www.uol.com.br'
+      title: 'Site 3',
+      text: 'www.uol.com.br',
+      date: '2020-07-27'
     },
     {
       id: 3,
-      titulo: 'Site 3',
-      descricao: 'www.uol.com.br'
+      title: 'Site 4',
+      text: 'www.uol.com.br',
+      date: '2020-07-26'
     },
     {
       id: 4,
-      titulo: 'Site 4',
-      descricao: 'www.uol.com.br'
+      title: 'Site 3',
+      text: 'www.uol.com.br',
+      date: '2020-07-25'
     },
     {
       id: 5,
-      titulo: 'Site 3',
-      descricao: 'www.uol.com.br'
-    },
-    {
-      id: 6,
-      titulo: 'Site 4',
-      descricao: 'www.uol.com.br'
+      title: 'Site 4',
+      text: 'www.uol.com.br',
+      date: '2020-07-24'
     }
   ];
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.listaHistorico);
-    console.log(JSON.stringify(this.listaHistorico));
+  ngOnInit() { }
+
+  async ionViewDidEnter() {
+    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
+
+    const dataAtual = new Date();
+    const diaSplit = dataAtual.getDate();
+    const dia = (diaSplit < 10) ? `0${diaSplit}` : diaSplit;
+    const mesSplit = dataAtual.getMonth() + 1;
+    const mes = (mesSplit < 10) ? `0${mesSplit}` : mesSplit;
+    const ano = dataAtual.getFullYear();
+    const dataFormatada = await `${ano}-${mes}-${dia}`;
+
+    this.listaHoje = this.listaHistorico.filter(item => {
+      return item.date === dataFormatada;
+    });
   }
 
   changeList(periodo: string) {

@@ -28,16 +28,16 @@
       </ion-row>
     </ion-col>
 
-    <ion-col size="12" style="padding: 0 15px;" *ngIf="periodoHoje">
+    <ion-col size="12" class="padding-list-15" *ngIf="periodoHoje">
       <div class="box-list-historico">
-        <ion-row *ngFor="let item of listaHistorico; let index = index" [ngClass]="{'mt-10': index > 0}" (click)="clickItem(item)" class="item-historico ion-flex-content">
+        <ion-row *ngFor="let item of listaHoje; let index = index" [ngClass]="{'mt-10': index > 0}" (click)="clickItem(item)" class="item-historico ion-flex-content">
           <ion-col size="2">
             <img src="assets/doc.svg" alt="Documento">
           </ion-col>
           <ion-col size="8">
-            <span>{{item.titulo}}</span>
+            <span>{{item.title}}</span>
             <br>
-            <span>{{item.descricao}}</span>
+            <span>{{item.text}}</span>
           </ion-col>
           <ion-col size="2">
             <img src="assets/eye.svg" alt="Documento">
@@ -45,8 +45,21 @@
         </ion-row>
       </div>
     </ion-col>
-    <ion-col size="12" *ngIf="periodoTodos">
-      Nenhum dado encontrado
+
+    <ion-col size="12" class="padding-list-15" *ngIf="periodoTodos">
+      <ion-row *ngFor="let item of listaHistorico; let index = index" [ngClass]="{'mt-10': index > 0}" (click)="clickItem(item)" class="item-historico ion-flex-content">
+        <ion-col size="2">
+          <img src="assets/doc.svg" alt="Documento">
+        </ion-col>
+        <ion-col size="8">
+          <span>{{item.title}}</span>
+          <br>
+          <span>{{item.text}}</span>
+        </ion-col>
+        <ion-col size="2">
+          <img src="assets/eye.svg" alt="Documento">
+        </ion-col>
+      </ion-row>
     </ion-col>
 
     <app-bottom-button></app-bottom-button>
