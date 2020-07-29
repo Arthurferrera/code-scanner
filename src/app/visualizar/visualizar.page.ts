@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar',
@@ -8,9 +9,20 @@ import { AlertController } from '@ionic/angular';
 })
 export class VisualizarPage implements OnInit {
 
-  constructor(private alertController: AlertController) { }
+  public item: any = {};
+
+  constructor(
+    private alertController: AlertController,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params && params.dados) {
+        this.item = JSON.parse(params.dados);
+      }
+    });
+    console.log(this.item);
   }
 
   async presentAlertConfirm() {
@@ -29,13 +41,21 @@ export class VisualizarPage implements OnInit {
         }, {
           text: 'Sim, excluir',
           handler: () => {
-            console.log('Confirm Okay');
+            this.removerItemLista();
           }
         }
       ]
     });
 
     await alert.present();
+  }
+
+  async removerItemLista() {
+    let listaHistorico = JSON.parse(localStorage.getItem('scan.history'));
+    listaHistorico = await listaHistorico.filter(itemHistorico => {
+      return itemHistorico.id !== this.item.id;
+    });
+    localStorage.setItem('scan.history', JSON.stringify(listaHistorico));
   }
 
 }

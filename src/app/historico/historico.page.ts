@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
@@ -51,7 +52,9 @@ export class HistoricoPage implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit() { }
 
@@ -86,7 +89,12 @@ export class HistoricoPage implements OnInit {
   }
 
   clickItem(item) {
-    console.log(item);
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        dados: JSON.stringify(item)
+      }
+    };
+    this.router.navigate(['visualizar'], navigationExtras);
   }
 
 }
