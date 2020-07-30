@@ -11,12 +11,17 @@ const routes: Routes = [
     loadChildren: () => import('./historico/historico.module').then( m => m.HistoricoPageModule)
   },
   {
-    path: '',
-    redirectTo: 'historico',
-    pathMatch: 'full'
-  },  {
     path: 'visualizar',
     loadChildren: () => import('./visualizar/visualizar.module').then( m => m.VisualizarPageModule)
+  },
+  {
+    path: 'modal-cadastra-titulo',
+    loadChildren: () => import('./modal-cadastra-titulo/modal-cadastra-titulo.module').then( m => m.ModalCadastraTituloPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   }
 
 ];
