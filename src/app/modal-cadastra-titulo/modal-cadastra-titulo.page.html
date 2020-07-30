@@ -1,20 +1,17 @@
 <ion-content>
   <ion-row>
-    <ion-col offset="2" size="8">
-      <h4>
+    <ion-col size="12">
+      <p class="titulo-modal">
         Insira um titulo para esta leitura
-      </h4>
+      </p>
 
-      <!-- <ion-row>
-        <ion-col size="12">
-          <ion-input type="text" [(ngModel)]="titulo" placeholder="Ex: Teste de Leitura"></ion-input>
-        </ion-col>
-        <ion-col size="12">
-          <ion-button (click)="validarCampo()" expand="block" fill="clear" shape="round">
-            Salvar
-          </ion-button>
-        </ion-col>
-      </ion-row> -->
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="titulo" type="text"></ion-input>
+      </ion-item>
+
+      <ion-button (click)="validarCampo()" expand="block" fill="clear" shape="round">
+        Salvar
+      </ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

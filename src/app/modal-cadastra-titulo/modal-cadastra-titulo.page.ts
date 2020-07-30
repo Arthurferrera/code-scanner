@@ -29,6 +29,8 @@ export class ModalCadastraTituloPage implements OnInit {
         duration: 2000
       });
       toast.present();
+    } else {
+      this.dismiss();
     }
   }
 
