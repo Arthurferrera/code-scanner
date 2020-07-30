@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
 
 
   ngOnInit() {
-    this.presentModal();
+    // this.presentModal();
   }
 
   async presentModal() {

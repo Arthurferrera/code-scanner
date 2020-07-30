@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ModalCadastraTituloPage } from '../../modal-cadastra-titulo/modal-cadastra-titulo.page';
 
 @Component({
   selector: 'app-bottom-button',
@@ -9,19 +10,21 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class BottomButtonComponent implements OnInit {
 
-  public id_codigo: number;
+  public idCodigo: number;
   public dataFormatada: string;
   public data: any = {};
   listaHistorico: any = [];
+  public titulo: string;
 
-  constructor(private barcodeScanner: BarcodeScanner, private navCtrl: NavController) { }
+  constructor(
+    private barcodeScanner: BarcodeScanner,
+    private navCtrl: NavController,
+    public modalController: ModalController
+  ) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   read() {
-
     this.listaHistorico = JSON.parse(localStorage.getItem('scan.history'));
     const dataAtual = new Date();
     const diaSplit = dataAtual.getDate();
@@ -32,20 +35,23 @@ export class BottomButtonComponent implements OnInit {
     this.dataFormatada = `${ano}-${mes}-${dia}`;
 
     if (this.listaHistorico) {
-      this.id_codigo = this.listaHistorico.length + 1;
+      this.idCodigo = this.listaHistorico.length + 1;
     } else {
-      this.id_codigo = 1;
+      this.idCodigo = 1;
       this.listaHistorico = [];
     }
 
 
-    //Ler QRCODE
-    this.barcodeScanner.scan().then(barcodeData => {
+    // Ler QRCODE
+    this.barcodeScanner.scan().then(async barcodeData => {
+      await this.presentModal();
+      console.log(this.titulo);
+
       console.log('Barcode data', barcodeData);
 
       this.data = {
-        id: this.id_codigo,
-        title: '',
+        id: this.idCodigo,
+        title: this.titulo,
         text: barcodeData.text,
         date: this.dataFormatada
       };
@@ -58,5 +64,20 @@ export class BottomButtonComponent implements OnInit {
     }).catch(err => {
       console.log('Error', err);
     });
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalCadastraTituloPage,
+      keyboardClose: false,
+      backdropDismiss: false,
+      swipeToClose: false,
+    });
+
+    modal.onDidDismiss().then((response: any) => {
+      this.titulo = response.data.titulo;
+    });
+
+    return await modal.present();
   }
 }
