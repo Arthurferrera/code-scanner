@@ -44,27 +44,22 @@ export class BottomButtonComponent implements OnInit {
       this.listaHistorico = [];
     }
 
-    await this.presentModal('text');
-
     // Ler QRCODE
-    // this.barcodeScanner.scan().then(async (barcodeData: any) => {
-    //   if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
-      // text: barcodeData.text,
-        // await 
+    this.barcodeScanner.scan().then(async (barcodeData: any) => {
+      if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
+        await this.presentModal(barcodeData.text);
+        this.navCtrl.navigateRoot('historico');
+      } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
+        this.utils.presentToast('Oops.. \n Código inválido!');
+      } else {
+        // cancelou
+      }
 
-        // this.navCtrl.navigateRoot('historico');
-
-    //   } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
-    //     this.utils.presentToast('Oops.. \n Código inválido!');
-    //   } else {
-    //     // cancelou
-    //   }
-
-    //   console.log(this.titulo);
-    //   console.log('Barcode data', barcodeData);
-    // }).catch(err => {
-    //   console.log('Error', err);
-    // });
+      console.log(this.titulo);
+      console.log('Barcode data', barcodeData);
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 
   async presentModal(textoBarcode) {
