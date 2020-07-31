@@ -8,6 +8,7 @@ import { VisualizarPageRoutingModule } from './visualizar-routing.module';
 
 import { VisualizarPage } from './visualizar.page';
 import { ComponentesModule } from 'src/app/components/components.module';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   imports: [
@@ -15,6 +16,8 @@ import { ComponentesModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentesModule,
+    NgxQRCodeModule,
+
     VisualizarPageRoutingModule
   ],
   declarations: [VisualizarPage]

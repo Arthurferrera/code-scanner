@@ -14,7 +14,9 @@
       </h4>
 
       <div class="image_qrcode">
-        <img src="/assets/qrcode-descartar.png" alt="">
+        <!-- <img src="/assets/qrcode-descartar.png" alt=""> -->
+        <ngx-qrcode [value]="item.text" [width]="200" cssClass=".img" errorCorrectionLevel="L">
+        </ngx-qrcode>
         <span>{{item.text}}</span>
       </div>
       <ion-row>
@@ -28,7 +30,7 @@
         </ion-col>
       </ion-row>
     </ion-col>
-    
+
     <app-bottom-button></app-bottom-button>
   </ion-row>
 </ion-content>

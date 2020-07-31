@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentesModule } from 'src/app/components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    NgxQRCodeModule,
     BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
