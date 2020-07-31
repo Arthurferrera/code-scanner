@@ -59,19 +59,7 @@ export class HistoricoPage implements OnInit {
   ngOnInit() { }
 
   async ionViewDidEnter() {
-    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
-
-    const dataAtual = new Date();
-    const diaSplit = dataAtual.getDate();
-    const dia = (diaSplit < 10) ? `0${diaSplit}` : diaSplit;
-    const mesSplit = dataAtual.getMonth() + 1;
-    const mes = (mesSplit < 10) ? `0${mesSplit}` : mesSplit;
-    const ano = dataAtual.getFullYear();
-    const dataFormatada = await `${ano}-${mes}-${dia}`;
-
-    this.listaHoje = this.listaHistorico.filter(item => {
-      return item.date === dataFormatada;
-    });
+    this.carregarLista();
   }
 
   changeList(periodo: string) {
@@ -95,6 +83,28 @@ export class HistoricoPage implements OnInit {
       }
     };
     this.router.navigate(['visualizar'], navigationExtras);
+  }
+
+  async atualizarLista(event) {
+    if (event) {
+      this.carregarLista();
+    }
+  }
+
+  async carregarLista() {
+    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
+
+    const dataAtual = new Date();
+    const diaSplit = dataAtual.getDate();
+    const dia = (diaSplit < 10) ? `0${diaSplit}` : diaSplit;
+    const mesSplit = dataAtual.getMonth() + 1;
+    const mes = (mesSplit < 10) ? `0${mesSplit}` : mesSplit;
+    const ano = dataAtual.getFullYear();
+    const dataFormatada = await `${ano}-${mes}-${dia}`;
+
+    this.listaHoje = this.listaHistorico.filter(item => {
+      return item.date === dataFormatada;
+    });
   }
 
 }
