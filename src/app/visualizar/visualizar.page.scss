@@ -1,5 +1,5 @@
 ion-content {
-    --background: #FFBB00;
+  --background:linear-gradient(#FFBB00,#fff, #fff); 
 }
 
 
@@ -11,6 +11,7 @@ ion-content {
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     color: #6E6E6E;
+    padding-bottom: 60px;
    
     
     h1, h2, h3,h4,h5, h6 {
@@ -47,7 +48,7 @@ ion-button  {
     --background: #FFBB00;
     --color: #fff;
     --border-radius: 50%;
-    margin: 10px;
+    margin: 10px 10px 40px 10px;
   }
 
   .delete{
