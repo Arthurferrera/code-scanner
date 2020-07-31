@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar',
@@ -13,7 +13,8 @@ export class VisualizarPage implements OnInit {
 
   constructor(
     private alertController: AlertController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -55,7 +56,8 @@ export class VisualizarPage implements OnInit {
     listaHistorico = await listaHistorico.filter(itemHistorico => {
       return itemHistorico.id !== this.item.id;
     });
-    localStorage.setItem('scan.history', JSON.stringify(listaHistorico));
+    await localStorage.setItem('scan.history', JSON.stringify(listaHistorico));
+    this.router.navigate(['historico']);
   }
 
 }
