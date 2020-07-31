@@ -10,6 +10,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class VisualizarPage implements OnInit {
 
   public item: any = {};
+  public id: any;
+  public listaHistorico: Array<any>;
 
   constructor(
     private alertController: AlertController,
@@ -17,13 +19,15 @@ export class VisualizarPage implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      if (params && params.dados) {
-        this.item = JSON.parse(params.dados);
+      if (params && params.id) {
+        this.id = JSON.parse(params.id);
       }
     });
-    console.log(this.item);
+    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
+
+    this.item = this.listaHistorico.find(item => item.id === this.id);
   }
 
   async presentAlertConfirm() {
