@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ModalCadastraTituloPage } from '../../modal-cadastra-titulo/modal-cadastra-titulo.page';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-bottom-button',
@@ -19,7 +20,8 @@ export class BottomButtonComponent implements OnInit {
   constructor(
     private barcodeScanner: BarcodeScanner,
     private navCtrl: NavController,
-    public modalController: ModalController
+    private modalController: ModalController,
+    private utils: UtilsService
   ) { }
 
   ngOnInit() { }
@@ -43,24 +45,28 @@ export class BottomButtonComponent implements OnInit {
 
 
     // Ler QRCODE
-    this.barcodeScanner.scan().then(async barcodeData => {
-      await this.presentModal();
+    this.barcodeScanner.scan().then(async (barcodeData: any) => {
+      if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
+        await this.presentModal();
+        this.data = {
+          id: this.idCodigo,
+          title: this.titulo,
+          text: barcodeData.text,
+          date: this.dataFormatada
+        };
+
+        this.listaHistorico.push(this.data);
+        localStorage.setItem('scan.history', JSON.stringify(this.listaHistorico));
+        this.navCtrl.navigateRoot('historico');
+
+      } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
+        this.utils.presentToast('Oops.. \n Código inválido!');
+      } else {
+        // cancelou
+      }
+
       console.log(this.titulo);
-
       console.log('Barcode data', barcodeData);
-
-      this.data = {
-        id: this.idCodigo,
-        title: this.titulo,
-        text: barcodeData.text,
-        date: this.dataFormatada
-      };
-
-      this.listaHistorico.push(this.data);
-
-      localStorage.setItem('scan.history', JSON.stringify(this.listaHistorico));
-
-      this.navCtrl.navigateRoot('historico');
     }).catch(err => {
       console.log('Error', err);
     });

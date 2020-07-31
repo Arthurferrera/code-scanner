@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-modal-cadastra-titulo',
@@ -12,7 +13,7 @@ export class ModalCadastraTituloPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    public toastController: ToastController
+    private utils: UtilsService
   ) { }
 
   ngOnInit() {
@@ -24,11 +25,7 @@ export class ModalCadastraTituloPage implements OnInit {
 
   async validarCampo() {
     if (this.titulo === '') {
-      const toast = await this.toastController.create({
-        message: 'Insira um titulo para o código.',
-        duration: 2000
-      });
-      toast.present();
+      this.utils.presentToast('Insira um titulo para o código.');
     } else {
       this.dismiss();
     }

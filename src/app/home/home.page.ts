@@ -27,7 +27,6 @@ export class HomePage implements OnInit {
     });
 
     modal.onDidDismiss().then((response: any) => {
-
       console.log(response.data.titulo);
     });
 
