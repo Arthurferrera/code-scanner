@@ -3,6 +3,7 @@ import { NavController, ModalController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ModalCadastraTituloPage } from '../../modal-cadastra-titulo/modal-cadastra-titulo.page';
 import { UtilsService } from 'src/app/services/utils.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bottom-button',
@@ -22,10 +23,11 @@ export class BottomButtonComponent implements OnInit {
     private barcodeScanner: BarcodeScanner,
     private navCtrl: NavController,
     private modalController: ModalController,
-    private utils: UtilsService
+    private utils: UtilsService,
+    public alertController: AlertController
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   async read() {
     this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
@@ -47,36 +49,65 @@ export class BottomButtonComponent implements OnInit {
     // Ler QRCODE
     this.barcodeScanner.scan().then(async (barcodeData: any) => {
       if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
-        await this.presentModal(barcodeData.text);
+        await this.presentAlertPrompt(barcodeData.text);
         this.navCtrl.navigateRoot('historico');
       } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
         this.utils.presentToast('Oops.. \n Código inválido!');
       } else {
         // cancelou
       }
-
-      console.log(this.titulo);
-      console.log('Barcode data', barcodeData);
     }).catch(err => {
       console.log('Error', err);
     });
   }
 
-  async presentModal(textoBarcode) {
-    const modal = await this.modalController.create({
-      component: ModalCadastraTituloPage,
+  async presentAlertPrompt(textoBarcode) {
+    const alert = await this.alertController.create({
       keyboardClose: false,
       backdropDismiss: false,
-      swipeToClose: false,
+      header: 'Insira um título',
+      inputs: [
+        {
+          name: 'titulo',
+          type: 'text',
+          placeholder: ''
+        }
+      ],
+      buttons: [
+        {
+          text: 'Salvar',
+          handler: (response) => {
+            if (response.titulo === '') {
+              this.utils.presentToast('Insira um titulo para o código.');
+              return false;
+            } else {
+              this.titulo = response.titulo;
+              this.salvarCodigo(textoBarcode);
+            }
+          }
+        }
+      ]
     });
 
-    modal.onDidDismiss().then(async (response: any) => {
-      this.titulo = await response.data.titulo;
-      this.salvarCodigo(textoBarcode);
-    });
-
-    return await modal.present();
+    await alert.present();
   }
+
+  // async presentModal(textoBarcode) {
+  //   const modal = await this.modalController.create({
+  //     component: ModalCadastraTituloPage,
+  //     keyboardClose: false,
+  //     backdropDismiss: false,
+  //     swipeToClose: false,
+  //     showBackdrop: true,
+  //   });
+
+  //   modal.onDidDismiss().then(async (response: any) => {
+  //     this.titulo = await response.data.titulo;
+  //     this.salvarCodigo(textoBarcode);
+  //   });
+
+  //   return await modal.present();
+  // }
 
   salvarCodigo(textoBarcode) {
     this.data = {
@@ -85,7 +116,6 @@ export class BottomButtonComponent implements OnInit {
       text: textoBarcode,
       date: this.dataFormatada
     };
-    console.log(this.data);
 
     this.listaHistorico.push(this.data);
     localStorage.setItem('scan.history', JSON.stringify(this.listaHistorico));
