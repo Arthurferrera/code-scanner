@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { ModalCadastraTituloPage } from '../../modal-cadastra-titulo/modal-cadastra-titulo.page';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AlertController } from '@ionic/angular';
 
@@ -11,7 +10,6 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./bottom-button.component.scss'],
 })
 export class BottomButtonComponent implements OnInit {
-
   @Output() atualizarLista: EventEmitter<boolean> = new EventEmitter();
   public idCodigo: number;
   public dataFormatada: string;
@@ -24,38 +22,48 @@ export class BottomButtonComponent implements OnInit {
     private navCtrl: NavController,
     private utils: UtilsService,
     public alertController: AlertController
-  ) { }
+  ) {}
 
   ngOnInit() {}
 
   async read() {
-    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
+    this.listaHistorico = await JSON.parse(
+      localStorage.getItem('scan.history')
+    );
     const dataAtual = new Date();
     const diaSplit = dataAtual.getDate();
-    const dia = (diaSplit < 10) ? `0${diaSplit}` : diaSplit;
+    const dia = diaSplit < 10 ? `0${diaSplit}` : diaSplit;
     const mesSplit = dataAtual.getMonth() + 1;
-    const mes = (mesSplit < 10) ? `0${mesSplit}` : mesSplit;
+    const mes = mesSplit < 10 ? `0${mesSplit}` : mesSplit;
     const ano = dataAtual.getFullYear();
     this.dataFormatada = await `${ano}-${mes}-${dia}`;
 
     if (this.listaHistorico) {
-      this.idCodigo = await this.listaHistorico.length + 1;
+      this.idCodigo = (await this.listaHistorico.length) + 1;
     } else {
       this.idCodigo = 1;
       this.listaHistorico = [];
     }
 
     // Ler QRCODE
-    this.barcodeScanner.scan().then(async (barcodeData: any) => {
-      if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
-        await this.presentAlertPrompt(barcodeData.text);
-        this.navCtrl.navigateRoot('historico');
-      } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
-        this.utils.presentToast('Oops.. \n Código inválido!');
-      }
-    }).catch(err => {
-      console.error('Error', err);
-    });
+    this.barcodeScanner
+      .scan()
+      .then(async (barcodeData: any) => {
+        if (barcodeData.cancelled === 0 || barcodeData.cancelled === false) {
+          await this.presentAlertPrompt(barcodeData.text);
+          this.navCtrl.navigateRoot('historico');
+        } else if (
+          barcodeData.text === '' &&
+          barcodeData.cancelled !== 1 &&
+          barcodeData.cancelled !== true
+        ) {
+          this.utils.presentToast('Código inválido!');
+        }
+      })
+      .catch((error) => {
+        this.utils.presentToast('Erro inesperado!');
+        console.error('Error', error);
+      });
   }
 
   async presentAlertPrompt(textoBarcode) {
@@ -67,8 +75,8 @@ export class BottomButtonComponent implements OnInit {
         {
           name: 'titulo',
           type: 'text',
-          placeholder: ''
-        }
+          placeholder: '',
+        },
       ],
       buttons: [
         {
@@ -81,9 +89,9 @@ export class BottomButtonComponent implements OnInit {
               this.titulo = response.titulo;
               this.salvarCodigo(textoBarcode);
             }
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
@@ -94,7 +102,7 @@ export class BottomButtonComponent implements OnInit {
       id: this.idCodigo,
       title: this.titulo,
       text: textoBarcode,
-      date: this.dataFormatada
+      date: this.dataFormatada,
     };
 
     this.listaHistorico.unshift(this.data);

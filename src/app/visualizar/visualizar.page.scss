@@ -1,65 +1,65 @@
 ion-content {
-  --background:linear-gradient(#FFBB00,#fff, #fff); 
+  --background: linear-gradient(#ffbb00, #fff, #fff);
 }
 
-
-  
 .row-rounded {
-    margin-top: 10vh;
-    height: 90vh;
-    background-color: #fff;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    color: #6E6E6E;
-    padding-bottom: 60px;
-   
-    
-    h1, h2, h3,h4,h5, h6 {
-      text-align: center;
-    }
-  }
+  margin-top: 10vh;
+  height: 90vh;
+  background-color: #fff;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  color: #6e6e6e;
+  padding-bottom: 60px;
 
-ion-back-button{
-    --color: #6E6E6E!important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-align: center;
+  }
 }
 
+ion-back-button {
+  --color: #6e6e6e !important;
+}
 
-.image_qrcode{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
+.image_qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-   .img{
+  .img {
     width: 200px;
     height: 200px;
- }
+  }
 
- span{
-    color: #6E6E6E;
+  span {
+    color: #6e6e6e;
     font-size: 16px;
- }
-
+  }
 }
 
-ion-button  {
-    height: 52px;
-    width: 52px;
-    --background: #FFBB00;
-    --color: #fff;
-    --border-radius: 50%;
-    margin: 10px 10px 40px 10px;
-  }
+ion-button {
+  height: 52px;
+  width: 52px;
+  --background: #ffbb00;
+  --color: #fff;
+  --border-radius: 50%;
+  margin: 10px 10px 40px 10px;
+}
 
-  .delete{
-      --background: red;
-  }
- 
-.bottom-button{
+.delete {
+  --background: red;
+}
+
+.bottom-button {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #FFF;
+  background: #fff;
 
   display: flex;
   align-items: center;

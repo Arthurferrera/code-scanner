@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar',
@@ -8,7 +8,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./visualizar.page.scss'],
 })
 export class VisualizarPage implements OnInit {
-
   public item: any = {};
   public id: any;
   public listaHistorico: Array<any>;
@@ -16,18 +15,20 @@ export class VisualizarPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   async ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       if (params && params.id) {
         this.id = JSON.parse(params.id);
       }
     });
-    this.listaHistorico = await JSON.parse(localStorage.getItem('scan.history'));
+    this.listaHistorico = await JSON.parse(
+      localStorage.getItem('scan.history')
+    );
 
-    this.item = this.listaHistorico.find(item => item.id === this.id);
+    this.item = this.listaHistorico.find((item) => item.id === this.id);
   }
 
   async presentAlertConfirm() {
@@ -42,14 +43,15 @@ export class VisualizarPage implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
-          }
-        }, {
+          },
+        },
+        {
           text: 'Sim, excluir',
           handler: () => {
             this.removerItemLista();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
@@ -57,11 +59,10 @@ export class VisualizarPage implements OnInit {
 
   async removerItemLista() {
     let listaHistorico = JSON.parse(localStorage.getItem('scan.history'));
-    listaHistorico = await listaHistorico.filter(itemHistorico => {
+    listaHistorico = await listaHistorico.filter((itemHistorico) => {
       return itemHistorico.id !== this.item.id;
     });
     await localStorage.setItem('scan.history', JSON.stringify(listaHistorico));
     this.router.navigate(['historico']);
   }
-
 }

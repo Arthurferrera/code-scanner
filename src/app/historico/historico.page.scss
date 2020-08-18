@@ -1,6 +1,5 @@
 ion-content {
-  --background:linear-gradient(#FFBB00,#fff, #fff); 
-  
+  --background: linear-gradient(#ffbb00, #fff, #fff);
 }
 
 .box-banner-historico {
@@ -19,40 +18,41 @@ ion-content {
   margin-top: 19vh;
   min-height: 81vh;
   height: 100%;
-  background-color: #FFF;
+  background-color: #fff;
   border-top-left-radius: 40px;
   border-top-right-radius: 54px;
   padding-top: 20vh;
-  color: #6E6E6E;
-  
-  h3, h6 {
+  color: #6e6e6e;
+
+  h3,
+  h6 {
     text-align: center;
   }
 }
 
-ion-button  {
+ion-button {
   height: 37px;
   width: 119px;
-  
-  --background: #DDDDDD;
-  --color: #A0A0A0;
+
+  --background: #dddddd;
+  --color: #a0a0a0;
   --border-radius: 50px;
-  --background-activated: #FFBB00;
-  --background-focused: #FFBB00;
-  --background-hover: #FFBB00;
-  --color-activated: #FFF;
-  --color-focused: #FFF;
-  --color-hover: #FFF;
+  --background-activated: #ffbb00;
+  --background-focused: #ffbb00;
+  --background-hover: #ffbb00;
+  --color-activated: #fff;
+  --color-focused: #fff;
+  --color-hover: #fff;
 }
 
 .active {
-  --background: #FFBB00 !important;
-  --color: #FFF !important;
+  --background: #ffbb00 !important;
+  --color: #fff !important;
 }
 
 .item-historico {
   height: 60px;
-  background: #DDDDDD;
+  background: #dddddd;
   border-radius: 10px;
 }
 
@@ -75,13 +75,13 @@ ion-button  {
   padding: 0 15px;
 }
 
-.content_qrcode{
+.content_qrcode {
   overflow: hidden;
 }
-.content_qrcode strong{
+.content_qrcode strong {
   font-size: 17px;
 }
-.text_qrcode{
+.text_qrcode {
   text-overflow: ellipsis;
   white-space: nowrap;
 }

@@ -14,14 +14,23 @@
       </h6>
     </ion-col>
 
-
     <ion-col size="12">
       <ion-row>
-        <ion-col size="10" offset="1" class="ion-flex-content ion-flex-space-around">
-          <ion-button [ngClass]="{'active': periodoHoje}" (click)="changeList('hoje')">
+        <ion-col
+          size="10"
+          offset="1"
+          class="ion-flex-content ion-flex-space-around"
+        >
+          <ion-button
+            [ngClass]="{'active': periodoHoje}"
+            (click)="changeList('hoje')"
+          >
             Hoje
           </ion-button>
-          <ion-button [ngClass]="{'active': periodoTodos}" (click)="changeList('todos')">
+          <ion-button
+            [ngClass]="{'active': periodoTodos}"
+            (click)="changeList('todos')"
+          >
             Todos
           </ion-button>
         </ion-col>
@@ -30,40 +39,54 @@
 
     <ion-col size="12" class="padding-list-15" *ngIf="periodoHoje">
       <div class="box-list-historico">
-        <ion-row *ngFor="let item of listaHoje; let index = index" [ngClass]="{'mt-10': index > 0}"
-          (click)="clickItem(item)" class="item-historico ion-flex-content">
+        <ion-row
+          *ngFor="let item of listaHoje; let index = index"
+          [ngClass]="{'mt-10': index > 0}"
+          (click)="clickItem(item)"
+          class="item-historico ion-flex-content"
+        >
           <ion-col size="2">
-            <img src="assets/doc.svg" alt="Documento">
+            <img src="assets/doc.svg" alt="Documento" />
           </ion-col>
           <ion-col size="8" class="content_qrcode">
             <strong>{{item.title}}</strong>
-            <br>
+            <br />
             <span class="text_qrcode">{{item.text}}</span>
           </ion-col>
           <ion-col size="2">
-            <img src="assets/eye.svg" alt="Documento">
+            <img src="assets/eye.svg" alt="Documento" />
           </ion-col>
         </ion-row>
       </div>
     </ion-col>
 
     <ion-col size="12" class="padding-list-15" *ngIf="periodoTodos">
-      <ion-row *ngFor="let item of listaHistorico; let index = index" [ngClass]="{'mt-10': index > 0}"
-        (click)="clickItem(item)" class="item-historico ion-flex-content">
+      <ion-row
+        *ngFor="let item of listaHistorico; let index = index"
+        [ngClass]="{'mt-10': index > 0}"
+        (click)="clickItem(item)"
+        class="item-historico ion-flex-content"
+      >
         <ion-col size="2">
-          <img src="assets/doc.svg" alt="Documento">
+          <img src="assets/doc.svg" alt="Documento" />
         </ion-col>
         <ion-col size="8" class="content_qrcode">
           <strong>{{item.title}}</strong>
-          <br>
+          <br />
           <span class="text_qrcode">{{item.text}}</span>
         </ion-col>
         <ion-col size="2">
-          <img src="assets/eye.svg" alt="Documento">
+          <img src="assets/eye.svg" alt="Documento" />
         </ion-col>
       </ion-row>
     </ion-col>
-
-    <app-bottom-button (atualizarLista)="atualizarLista($event)" ></app-bottom-button>
   </ion-row>
 </ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar> -->
+    <app-bottom-button
+      (atualizarLista)="atualizarLista($event)"
+    ></app-bottom-button>
+  <!-- </ion-toolbar>
+</ion-footer> -->
