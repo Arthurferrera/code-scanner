@@ -22,7 +22,6 @@ export class BottomButtonComponent implements OnInit {
   constructor(
     private barcodeScanner: BarcodeScanner,
     private navCtrl: NavController,
-    private modalController: ModalController,
     private utils: UtilsService,
     public alertController: AlertController
   ) { }
@@ -53,11 +52,9 @@ export class BottomButtonComponent implements OnInit {
         this.navCtrl.navigateRoot('historico');
       } else if(barcodeData.text === '' && (barcodeData.cancelled !== 1 || barcodeData.cancelled !== true)) {
         this.utils.presentToast('Oops.. \n Código inválido!');
-      } else {
-        // cancelou
       }
     }).catch(err => {
-      console.log('Error', err);
+      console.error('Error', err);
     });
   }
 
@@ -92,23 +89,6 @@ export class BottomButtonComponent implements OnInit {
     await alert.present();
   }
 
-  // async presentModal(textoBarcode) {
-  //   const modal = await this.modalController.create({
-  //     component: ModalCadastraTituloPage,
-  //     keyboardClose: false,
-  //     backdropDismiss: false,
-  //     swipeToClose: false,
-  //     showBackdrop: true,
-  //   });
-
-  //   modal.onDidDismiss().then(async (response: any) => {
-  //     this.titulo = await response.data.titulo;
-  //     this.salvarCodigo(textoBarcode);
-  //   });
-
-  //   return await modal.present();
-  // }
-
   salvarCodigo(textoBarcode) {
     this.data = {
       id: this.idCodigo,
@@ -117,7 +97,7 @@ export class BottomButtonComponent implements OnInit {
       date: this.dataFormatada
     };
 
-    this.listaHistorico.push(this.data);
+    this.listaHistorico.unshift(this.data);
     localStorage.setItem('scan.history', JSON.stringify(this.listaHistorico));
     this.atualizarLista.emit(true);
   }
