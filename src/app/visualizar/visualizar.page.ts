@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-visualizar',
@@ -15,8 +16,9 @@ export class VisualizarPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    // public socialSharing: SocialSharing
+  ) { }
 
   async ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -64,5 +66,9 @@ export class VisualizarPage implements OnInit {
     });
     await localStorage.setItem('scan.history', JSON.stringify(listaHistorico));
     this.router.navigate(['historico']);
+  }
+
+  share() {
+
   }
 }

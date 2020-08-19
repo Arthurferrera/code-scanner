@@ -17,7 +17,6 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     IonicModule,
     ComponentesModule,
     NgxQRCodeModule,
-
     VisualizarPageRoutingModule
   ],
   declarations: [VisualizarPage]

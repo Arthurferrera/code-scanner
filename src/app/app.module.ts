@@ -12,6 +12,8 @@ import { ComponentesModule } from 'src/app/components/components.module';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,6 +23,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     SplashScreen,
     NgxQRCodeModule,
     BarcodeScanner,
+    SocialSharing,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
