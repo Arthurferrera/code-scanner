@@ -32,7 +32,7 @@ export class BottomButtonComponent implements OnInit {
         this.primeiraLeitura = true;
         this.read();
       }
-    }, 1000);
+    }, 100);
   }
 
   async read() {
@@ -70,7 +70,6 @@ export class BottomButtonComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.utils.presentToast('Erro inesperado!');
         console.error('Error', error);
       });
   }
