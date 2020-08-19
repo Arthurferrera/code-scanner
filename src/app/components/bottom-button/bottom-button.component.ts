@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -10,12 +10,14 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./bottom-button.component.scss'],
 })
 export class BottomButtonComponent implements OnInit {
+  @Input() ler = false;
   @Output() atualizarLista: EventEmitter<boolean> = new EventEmitter();
   public idCodigo: number;
   public dataFormatada: string;
   public data: any = {};
   listaHistorico: any = [];
   public titulo: string;
+  public primeiraLeitura = false;
 
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -24,7 +26,14 @@ export class BottomButtonComponent implements OnInit {
     public alertController: AlertController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setInterval(() => {
+      if (this.ler && !this.primeiraLeitura) {
+        this.primeiraLeitura = true;
+        this.read();
+      }
+    }, 1000);
+  }
 
   async read() {
     this.listaHistorico = await JSON.parse(

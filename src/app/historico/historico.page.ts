@@ -13,50 +13,16 @@ export class HistoricoPage implements OnInit {
   public periodoHoje = true;
   public periodoTodos = false;
   public listaHoje: Array<any> = [];
-  public listaHistorico: Array<any> = [
-    // {
-    //   id: 0,
-    //   title: 'Site 1',
-    //   text: 'www.uol.com.brkasdhksgjkasdjfhksdjlfslaçfjslslhjhjfjkghcvu',
-    //   date: '2020-07-29'
-    // },
-    // {
-    //   id: 1,
-    //   title: 'Site 2',
-    //   text: 'www.uol.com.br',
-    //   date: '2020-07-28'
-    // },
-    // {
-    //   id: 2,
-    //   title: 'Site 3',
-    //   text: 'www.uol.com.br',
-    //   date: '2020-07-27'
-    // },
-    // {
-    //   id: 3,
-    //   title: 'Site 4',
-    //   text: 'www.uol.com.br',
-    //   date: '2020-07-26'
-    // },
-    // {
-    //   id: 4,
-    //   title: 'Site 3',
-    //   text: 'www.uol.com.br',
-    //   date: '2020-07-25'
-    // },
-    // {
-    //   id: 5,
-    //   title: 'Site 4',
-    //   text: 'www.uol.com.br',
-    //   date: '2020-07-24'
-    // }
-  ];
+  public listaHistorico: Array<any> = [];
+  public ler = false;
 
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.ler = true;
+  }
 
   async ionViewDidEnter() {
     this.carregarLista();

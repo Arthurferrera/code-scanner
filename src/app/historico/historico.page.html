@@ -86,10 +86,5 @@
   </ion-row>
 </ion-content>
 
-<!-- <ion-footer>
-  <ion-toolbar> -->
-    <app-bottom-button
-      (atualizarLista)="atualizarLista($event)"
-    ></app-bottom-button>
-  <!-- </ion-toolbar>
-</ion-footer> -->
+<app-bottom-button (atualizarLista)="atualizarLista($event)" [ler]="ler">
+</app-bottom-button>
