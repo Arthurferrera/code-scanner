@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-visualizar',
@@ -17,7 +17,7 @@ export class VisualizarPage implements OnInit {
     private alertController: AlertController,
     private route: ActivatedRoute,
     private router: Router,
-    // public socialSharing: SocialSharing
+    public socialSharing: SocialSharing
   ) { }
 
   async ngOnInit() {
@@ -69,6 +69,13 @@ export class VisualizarPage implements OnInit {
   }
 
   share() {
+    // Share via email
+    this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+      // Success!
+      console.log('sucesso');
 
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 }
