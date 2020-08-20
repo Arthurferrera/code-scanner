@@ -9,28 +9,17 @@
       </h3>
 
       <h6>
-        Esse é o seu histórico de leitura arraste para o lado para ter acesso
-        aos botões de ação, ou clique no item para visualizar o conteúdo
+        Esse é o seu histórico de leitura, clique no item para visualizar o conteúdo
       </h6>
     </ion-col>
 
     <ion-col size="12">
       <ion-row>
-        <ion-col
-          size="10"
-          offset="1"
-          class="ion-flex-content ion-flex-space-around"
-        >
-          <ion-button
-            [ngClass]="{'active': periodoHoje}"
-            (click)="changeList('hoje')"
-          >
+        <ion-col size="10" offset="1" class="ion-flex-content ion-flex-space-around">
+          <ion-button [ngClass]="{'active': periodoHoje}" (click)="changeList('hoje')">
             Hoje
           </ion-button>
-          <ion-button
-            [ngClass]="{'active': periodoTodos}"
-            (click)="changeList('todos')"
-          >
+          <ion-button [ngClass]="{'active': periodoTodos}" (click)="changeList('todos')">
             Todos
           </ion-button>
         </ion-col>
@@ -39,12 +28,8 @@
 
     <ion-col size="12" class="padding-list-15" *ngIf="periodoHoje">
       <div class="box-list-historico">
-        <ion-row
-          *ngFor="let item of listaHoje; let index = index"
-          [ngClass]="{'mt-10': index > 0}"
-          (click)="clickItem(item)"
-          class="item-historico ion-flex-content"
-        >
+        <ion-row *ngFor="let item of listaHoje; let index = index" [ngClass]="{'mt-10': index > 0}"
+          (click)="clickItem(item)" class="item-historico ion-flex-content">
           <ion-col size="2">
             <img src="assets/doc.svg" alt="Documento" />
           </ion-col>
@@ -63,12 +48,8 @@
     <ion-col size="12" class="padding-list-15" *ngIf="periodoTodos">
       <div class="box-list-historico">
 
-        <ion-row
-          *ngFor="let item of listaHistorico; let index = index"
-          [ngClass]="{'mt-10': index > 0}"
-          (click)="clickItem(item)"
-          class="item-historico ion-flex-content"
-        >
+        <ion-row *ngFor="let item of listaHistorico; let index = index" [ngClass]="{'mt-10': index > 0}"
+          (click)="clickItem(item)" class="item-historico ion-flex-content">
           <ion-col size="2">
             <img src="assets/doc.svg" alt="Documento" />
           </ion-col>
