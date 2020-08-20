@@ -70,7 +70,7 @@ export class VisualizarPage implements OnInit {
 
   share() {
     // Share via email
-    this.socialSharing.shareViaEmail('Body', 'Subject', ['recipient@example.org']).then(() => {
+    this.socialSharing.share(this.item.text, this.item.title, '', '').then(() => {
       // Success!
       console.log('sucesso');
 
