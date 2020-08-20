@@ -7,7 +7,6 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./historico.page.scss'],
 })
 
-
 export class HistoricoPage implements OnInit {
 
   public periodoHoje = true;
@@ -18,10 +17,11 @@ export class HistoricoPage implements OnInit {
 
   constructor(
     private router: Router
-  ) { }
+    ) {
+      this.ler = !JSON.parse(localStorage.getItem('scan.primeiraLeitura'));
+    }
 
   ngOnInit() {
-    this.ler = true;
   }
 
   async ionViewDidEnter() {

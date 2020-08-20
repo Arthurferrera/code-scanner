@@ -27,7 +27,7 @@ export class BottomButtonComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    setInterval(() => {
+    setTimeout(() => {
       if (this.ler && !this.primeiraLeitura) {
         this.primeiraLeitura = true;
         this.read();
@@ -36,9 +36,13 @@ export class BottomButtonComponent implements OnInit {
   }
 
   async read() {
+    localStorage.setItem('scan.primeiraLeitura', JSON.stringify(true));
+    this.primeiraLeitura = true;
+
     this.listaHistorico = await JSON.parse(
       localStorage.getItem('scan.history')
     );
+
     const dataAtual = new Date();
     const diaSplit = dataAtual.getDate();
     const dia = diaSplit < 10 ? `0${diaSplit}` : diaSplit;
